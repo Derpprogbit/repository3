@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love ❤️</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .heart {
+      font-size: 120px;
+      animation: heartbeat 1.5s infinite;
+      margin-bottom: 20px;
+      color: #ff4757;
+      text-shadow: 0 0 30px rgba(255, 71, 87, 0.6);
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.5rem;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .greeting {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeIn 2s forwards 0.5s;
+    }
+
+    .message {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-love {
+      background: #ff4757;
+      color: white;
+    }
+
+    .btn-love:hover {
+      background: #ff3742;
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(255, 71, 87, 0.4);
+    }
+
+    .btn-surprise {
+      background: #2ed573;
+      color: white;
+    }
+
+    .btn-surprise:hover {
+      background: #1abc9c;
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .love-note {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ff4757;
+      opacity: 0;
+      animation: floatUp 4s forwards;
+      text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes floatUp {
+      0% { opacity: 0; transform: translateY(100px); }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-300px); }
+    }
+
+    .kiss {
+      font-size: 60px;
+      margin: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .kiss:hover {
+      transform: scale(1.4) rotate(15deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" id="hearts"></div>
+
+  <div class="container">
+    <div class="heart">❤️</div>
+    
+    <h1>My Dearest Love</h1>
+    
+    <p class="greeting">Hey beautiful ❤️</p>
+    
+    <div class="message" id="message">
+      Happy birthday, my baby. Today feels so special that it almost brings
+        tears to my eyes just thinking about how lucky I am to have you.
+    </div>
+
+    <div class="buttons">
+      <button class="btn-love" onclick="sendKiss()">Send a Kiss 💋</button>
+      <button class="btn-surprise" onclick="surpriseMe()">Surprise Me!</button>
+    </div>
+
+    <div style="margin-top: 30px;">
+      <span class="kiss" onclick="sendKiss()">💋</span>
+      <span class="kiss" onclick="sendKiss()">💕</span>
+      <span class="kiss" onclick="sendKiss()">🌹</span>
+    </div>
+
+    <p style="margin-top: 40px; color: rgba(255,255,255,0.9); font-size: 1.1rem;">
+      Click the hearts or buttons to show your love
+    </p>
+  </div>
+
+  <script>
+    // Create floating hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'love-note';
+      heart.textContent = ['❤️', '💗', '💖', '💘', '💝'][Math.floor(Math.random()*5)];
+      
+      const left = Math.random() * 100;
+      heart.style.left = `${left}vw`;
+      heart.style.animationDuration = `${Math.random() * 3 + 3}s`;
+      heart.style.fontSize = `${Math.random() * 30 + 20}px`;
+      
+      document.getElementById('hearts').appendChild(heart);
+      
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    // Send virtual kiss with animation
+    function sendKiss() {
+      const kiss = document.createElement('div');
+      kiss.textContent = '💋';
+      kiss.style.position = 'fixed';
+      kiss.style.fontSize = '80px';
+      kiss.style.left = Math.random() * 100 + 'vw';
+      kiss.style.top = Math.random() * 100 + 'vh';
+      kiss.style.zIndex = '1000';
+      kiss.style.transition = 'all 1s ease';
+      document.body.appendChild(kiss);
+
+      setTimeout(() => {
+        kiss.style.transform = `translateY(-${Math.random() * 300 + 200}px) scale(0.5)`;
+        kiss.style.opacity = '0';
+      }, 50);
+
+      setTimeout(() => kiss.remove(), 1500);
+
+      // Change message temporarily
+      const msg = document.getElementById('message');
+      const originalText = msg.innerHTML;
+      msg.innerHTML = "Mwah! I love you so much! 💋";
+      msg.style.transition = 'all 0.4s';
+      
+      setTimeout(() => {
+        msg.innerHTML = originalText;
+      }, 2000);
+    }
+
+    // Surprise function
+    function surpriseMe() {
+      const messages = [
+        "You're my favorite notification ❤️",
+        "I fall in love with you every single day",
+        "You make my world brighter just by existing",
+        "Thank you for choosing me every day",
+        "My heart beats only for you 💓"
+      ];
+      
+      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+      
+      const surpriseDiv = document.createElement('div');
+      surpriseDiv.style.position = 'fixed';
+      surpriseDiv.style.top = '50%';
+      surpriseDiv.style.left = '50%';
+      surpriseDiv.style.transform = 'translate(-50%, -50%)';
+      surpriseDiv.style.background = 'rgba(255, 71, 87, 0.95)';
+      surpriseDiv.style.color = 'white';
+      surpriseDiv.style.padding = '30px 50px';
+      surpriseDiv.style.borderRadius = '20px';
+      surpriseDiv.style.fontSize = '1.8rem';
+      surpriseDiv.style.fontFamily = "'Great Vibes', cursive";
+      surpriseDiv.style.boxShadow = '0 20px 60px rgba(0,0,0,0.3)';
+      surpriseDiv.style.zIndex = '2000';
+      surpriseDiv.style.opacity = '0';
+      surpriseDiv.style.transition = 'all 0.6s';
+      surpriseDiv.textContent = randomMsg;
+      
+      document.body.appendChild(surpriseDiv);
+
+      setTimeout(() => {
+        surpriseDiv.style.opacity = '1';
+      }, 10);
+
+      setTimeout(() => {
+        surpriseDiv.style.opacity = '0';
+        setTimeout(() => surpriseDiv.remove(), 800);
+      }, 2800);
+
+      // Extra hearts burst
+      for(let i = 0; i < 15; i++) {
+        setTimeout(createHeart, i * 80);
+      }
+    }
+
+    // Auto floating hearts
+    setInterval(() => {
+      if (Math.random() > 0.4) createHeart();
+    }, 400);
+
+    // Keyboard interactivity
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'k' || e.key === 'K') {
+        sendKiss();
+      }
+      if (e.key === 's' || e.key === 'S') {
+        surpriseMe();
+      }
+    });
+
+    // Click anywhere to create small hearts
+    document.addEventListener('click', function(e) {
+      if (Math.random() > 0.7) {
+        const heart = document.createElement('div');
+        heart.textContent = '❤️';
+        heart.style.position = 'fixed';
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        heart.style.fontSize = '25px';
+        heart.style.zIndex = '999';
+        heart.style.pointerEvents = 'none';
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.style.transition = 'all 1.5s';
+          heart.style.transform = 'translateY(-120px)';
+          heart.style.opacity = '0';
+        }, 50);
+
+        setTimeout(() => heart.remove(), 1600);
+      }
+    });
+
+    // Welcome message
+    console.log("%c❤️ Made with love for your special person ❤️", "color: #ff4757; font-size: 16px; font-weight: bold");
+  </script>
+</body>
+</html>
